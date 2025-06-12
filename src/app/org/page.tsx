@@ -37,12 +37,7 @@ export default function Home() {
               >
                 Get Started
               </Link>
-              <Link 
-                href="/my-scores"
-                className="bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium"
-              >
-                My Progress
-              </Link>
+
             </div>
           </div>
         </div>
@@ -144,7 +139,7 @@ export default function Home() {
               <div className="text-sm text-gray-600 dark:text-gray-400">Questions</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">~50</div>
+              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">~10</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Minutes</div>
             </div>
             <div className="text-center">
@@ -170,12 +165,7 @@ export default function Home() {
               >
                 Start Section 1
               </Link>
-              <Link 
-                href="/my-scores"
-                className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors"
-              >
-                View My Progress
-              </Link>
+
             </div>
           </div>
         </div>
@@ -187,7 +177,7 @@ export default function Home() {
           <div className="text-center text-sm text-gray-600 dark:text-gray-400">
             <p>© 2025 GitHub Copilot Learning Platform. All rights reserved.</p>
             <div className="mt-2 space-x-4">
-              <Link href="/my-scores" className="hover:text-gray-900 dark:hover:text-white">My Progress</Link>
+
               <Link href="/login" className="hover:text-gray-900 dark:hover:text-white">Login</Link>
               <Link href="/" className="hover:text-gray-900 dark:hover:text-white">Home</Link>
             </div>

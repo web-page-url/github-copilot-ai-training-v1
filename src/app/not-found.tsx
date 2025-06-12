@@ -19,7 +19,7 @@ export default function NotFound() {
             Back to Homepage
           </Link>
           <Link
-            href="/my-scores"
+                          href="/"
             className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
           >
             My Progress

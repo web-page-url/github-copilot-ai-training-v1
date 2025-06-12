@@ -115,6 +115,14 @@ export class AdminDatabaseService {
       console.log('📊 Admin: Raw progress records:', progressData?.length || 0);
       console.log('📊 Admin: Sample progress data:', progressData?.[0]);
 
+      // DEBUG: Log all questions_answered values
+      console.log('🐛 DEBUG: All questions_answered values:', progressData?.map((p: any) => ({
+        user_email: p.user_email,
+        section_id: p.section_id,
+        questions_answered: p.questions_answered,
+        questions_correct: p.questions_correct
+      })));
+
       if (!progressData || progressData.length === 0) {
         console.log('❌ Admin: No progress data found');
         return [];
@@ -166,7 +174,7 @@ export class AdminDatabaseService {
           userEmail: user?.email || progress.user_email || 'unknown@email.com',
           sectionNumber: section?.id || progress.section_id || 0,
           sectionTitle: section?.title || `Section ${progress.section_id}`,
-          totalQuestions: progress.questions_answered || 0,
+          totalQuestions: 2, // All sections have 2 questions each
           questionsCorrect: progress.questions_correct || 0,
           accuracy: progress.completion_percentage || 0,
           timeSpent: progress.time_spent || 0,

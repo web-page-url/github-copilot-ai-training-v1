@@ -30,7 +30,7 @@ export default function QuizCard({
     setIsAnswered(true);
     setShowResult(true);
     
-    const isCorrect = answer === question.correctAnswer;
+    const isCorrect = answer == question.correctAnswer;
     onAnswer(answer, isCorrect);
   };
 
@@ -43,7 +43,7 @@ export default function QuizCard({
   };
 
   const isCorrectAnswer = (answer: string | number): boolean => {
-    return answer === question.correctAnswer;
+    return answer == question.correctAnswer;
   };
 
   const getAnswerButtonClass = (answer: string | number, index: number): string => {
@@ -152,7 +152,7 @@ export default function QuizCard({
       {/* Result & Explanation */}
       {showResult && (
         <div className="mt-6 p-4 rounded-lg border-l-4">
-          {selectedAnswer === question.correctAnswer ? (
+          {selectedAnswer == question.correctAnswer ? (
             <div className="border-l-green-500 bg-green-50 dark:bg-green-900/20">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-green-600 dark:text-green-400">✓</span>

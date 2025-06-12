@@ -49,12 +49,7 @@ export function UserGreeting() {
 
         {/* Actions */}
         <div className="flex items-center space-x-3">
-          <Link
-            href="/my-scores"
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
-          >
-            View My Progress
-          </Link>
+
           <Link
             href="/"
             className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white rounded-lg text-sm font-medium transition-colors"

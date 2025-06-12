@@ -275,7 +275,7 @@ export default function SectionLearning({ sectionNumber }: SectionLearningProps)
               </button>
               
               <button
-                onClick={() => router.push('/my-scores')}
+                                    onClick={() => router.push('/')}
                 className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
               >
                 📊 View All My Scores

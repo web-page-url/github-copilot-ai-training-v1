@@ -30,16 +30,7 @@ export default function Navbar() {
 
           {/* Navigation Links */}
           <div className="flex items-center space-x-8">
-            <Link
-              href="/my-scores"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                isActive('/my-scores')
-                  ? 'bg-blue-600 text-white border border-blue-500'
-                  : 'text-gray-300 hover:text-white hover:bg-gray-800'
-              }`}
-            >
-              My Scores
-            </Link>
+
             
             <Link
               href="/login"

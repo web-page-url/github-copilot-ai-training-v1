@@ -202,7 +202,8 @@ export default function SimpleSectionLearning({ sectionNumber }: SimpleSectionLe
     }, 2000);
   };
 
-  const completeSection = () => {
+  const completeSection = async () => {
+    // Calculate completion data from local state first
     const completionData = {
       sectionNumber,
       sectionTitle: sectionInfo?.title || `Section ${sectionNumber}`,
@@ -245,28 +246,66 @@ export default function SimpleSectionLearning({ sectionNumber }: SimpleSectionLe
       
       setIsSyncing(true);
       
-      // Convert to the format expected by SectionsService
-      const progressData = {
-        user_id: userInfo.email,
-        section_id: sectionNumber,
-        questions_answered: completionData.totalQuestions,
-        questions_correct: completionData.questionsCorrect,
-        total_score: completionData.score,
-        completion_percentage: completionData.accuracy,
-        time_spent: completionData.timeSpent,
-        status: 'completed' as const,
-        completed_at: completionData.completedAt
-      };
-      
-      SectionsService.updateUserProgress(userInfo.email, progressData)
-        .then((success) => {
-          console.log('💾 Section completion save result:', success);
-          setIsSyncing(false);
-        })
-        .catch((error) => {
-          console.error('❌ Section completion save error:', error);
-          setIsSyncing(false);
+      // Calculate actual questions_correct from database responses instead of local state
+      try {
+        const userAnswers = await SectionsService.getUserSectionAnswers(userInfo.email, sectionNumber);
+        const actualQuestionsCorrect = userAnswers.filter(answer => answer.is_correct).length;
+        const actualAccuracy = Math.round((actualQuestionsCorrect / questions.length) * 100);
+        
+        console.log('🔍 Recalculated from database:', {
+          localQuestionsCorrect: completionData.questionsCorrect,
+          actualQuestionsCorrect,
+          localAccuracy: completionData.accuracy,
+          actualAccuracy
         });
+        
+        // Convert to the format expected by SectionsService
+        const progressData = {
+          user_id: userInfo.email,
+          section_id: sectionNumber,
+          questions_answered: completionData.totalQuestions,
+          questions_correct: actualQuestionsCorrect, // Use database-calculated value
+          total_score: actualQuestionsCorrect, // Score should match questions correct
+          completion_percentage: actualAccuracy, // Use database-calculated accuracy
+          time_spent: completionData.timeSpent,
+          status: 'completed' as const,
+          completed_at: completionData.completedAt
+        };
+        
+        SectionsService.updateUserProgress(userInfo.email, progressData)
+          .then((success) => {
+            console.log('💾 Section completion save result:', success);
+            setIsSyncing(false);
+          })
+          .catch((error) => {
+            console.error('❌ Section completion save error:', error);
+            setIsSyncing(false);
+          });
+      } catch (error) {
+        console.error('❌ Error calculating from database, using local values:', error);
+        // Fallback to original logic if database calculation fails
+        const progressData = {
+          user_id: userInfo.email,
+          section_id: sectionNumber,
+          questions_answered: completionData.totalQuestions,
+          questions_correct: completionData.questionsCorrect,
+          total_score: completionData.score,
+          completion_percentage: completionData.accuracy,
+          time_spent: completionData.timeSpent,
+          status: 'completed' as const,
+          completed_at: completionData.completedAt
+        };
+        
+        SectionsService.updateUserProgress(userInfo.email, progressData)
+          .then((success) => {
+            console.log('💾 Section completion save result:', success);
+            setIsSyncing(false);
+          })
+          .catch((error) => {
+            console.error('❌ Section completion save error:', error);
+            setIsSyncing(false);
+          });
+      }
     } else {
       console.log('⚠️ Not saving to database:', {
         isDatabaseConnected,
@@ -859,7 +898,7 @@ export default function SimpleSectionLearning({ sectionNumber }: SimpleSectionLe
               </button>
               
               <button
-                onClick={() => router.push('/my-scores')}
+                                    onClick={() => router.push('/')}
                 className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
               >
                 📊 View All My Scores
@@ -876,10 +915,9 @@ export default function SimpleSectionLearning({ sectionNumber }: SimpleSectionLe
                          <div className="space-y-6">
                {questions.map((question, index) => {
                  const userAnswer = progress.userAnswers[question.id];
-                 const correctAnswer = question.type === 'multiple-choice' 
-                   ? question.options?.[question.correctAnswer as number]
-                   : question.correctAnswer;
-                 const isCorrect = userAnswer === correctAnswer?.toString();
+                 const isCorrect = question.type === 'multiple-choice'
+                   ? userAnswer === question.correctAnswer.toString()
+                   : userAnswer === question.correctAnswer?.toString();
                 
                 return (
                   <div key={question.id} className={`p-6 rounded-lg border-2 ${
@@ -897,9 +935,7 @@ export default function SimpleSectionLearning({ sectionNumber }: SimpleSectionLe
                         </div>
                         <div>
                           <span className={`px-2 py-1 rounded text-xs font-medium ${
-                            question.category === 'warmup' 
-                              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
-                              : question.category === 'general'
+                            question.category === 'general'
                               ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400'
                               : 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400'
                           }`}>
@@ -1010,7 +1046,7 @@ export default function SimpleSectionLearning({ sectionNumber }: SimpleSectionLe
                             Correct Answer:
                           </div>
                           <div className="font-semibold text-green-700 dark:text-green-400">
-                            {correctAnswer === 'true' ? 'True' : correctAnswer === 'false' ? 'False' : correctAnswer}
+                            {question.correctAnswer === 'true' ? 'True' : question.correctAnswer === 'false' ? 'False' : question.correctAnswer}
                           </div>
                         </div>
                       </div>
@@ -1185,7 +1221,7 @@ export default function SimpleSectionLearning({ sectionNumber }: SimpleSectionLe
                   </span>
                 </div>
                 <Timer 
-                  initialTime={180} 
+                  initialTime={60} 
                   onComplete={() => {
                     handleQuestionAnswer(currentQuestion.id, '', false);
                   }}

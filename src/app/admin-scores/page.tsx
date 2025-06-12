@@ -150,6 +150,19 @@ export default function AdminScoresPage() {
     loadAdminData();
   }, []);
 
+  // Add debug logging
+  useEffect(() => {
+    if (allProgress.length > 0) {
+      console.log('🐛 DEBUG: Admin Progress Data:', allProgress.map(p => ({
+        userEmail: p.userEmail,
+        sectionNumber: p.sectionNumber,
+        totalQuestions: p.totalQuestions,
+        questionsCorrect: p.questionsCorrect,
+        accuracy: p.accuracy
+      })));
+    }
+  }, [allProgress]);
+
   const loadAdminData = async () => {
     try {
       setLoading(true);

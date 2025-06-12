@@ -47,6 +47,13 @@ interface OverallStats {
 }
 
 export default function MyScoresPage() {
+  const router = useRouter();
+  
+  // Redirect users away from this page
+  useEffect(() => {
+    router.push('/'); // Redirect to homepage
+  }, [router]);
+
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [sectionCompletions, setSectionCompletions] = useState<SectionCompletion[]>([]);
   const [questionResponses, setQuestionResponses] = useState<QuestionResponse[]>([]);
@@ -63,7 +70,6 @@ export default function MyScoresPage() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
   const [masterCertificateAvailable, setMasterCertificateAvailable] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     loadUserData();
