@@ -1,4 +1,4 @@
-// Hardcoded questions for all 6 sections
+// Hardcoded questions for all 10 sections
 export interface Question {
   id: string;
   question: string;
@@ -23,61 +23,81 @@ export interface SectionData {
 export const sectionData: Record<number, SectionData> = {
   1: {
     id: 1,
-    title: "What is GitHub Copilot?",
+    title: "Introduction to GitHub Copilot",
     description: "Understanding GitHub Copilot as an AI pair programmer",
     difficulty: "beginner",
     duration: 1,
     questions: [
       {
         id: "copilot-1-1",
-        question: "What is GitHub Copilot?",
+        question: "What is GitHub Copilot primarily designed as?",
         type: "multiple-choice",
-        options: ["GitHub Copilot is an AI pair programmer that offers real-time code suggestions.", "GitHub Copilot is OpenAI's new autonomous agent for running end-to-end tests.", "GitHub Copilot is a Git repository hosting service built by Microsoft.", "GitHub Copilot is a package manager integrated into Visual Studio Code."],
+        options: [
+          "An AI pair programmer",
+          "A cloud deployment tool",
+          "A project management software",
+          "A CI/CD pipeline monitor"
+        ],
         correctAnswer: 0,
-        explanation: "GitHub Copilot is an AI pair programmer that offers real-time code suggestions to help developers write code more efficiently.",
+        explanation: "GitHub Copilot is described as an AI pair programmer to assist with real-time code generation.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-1-2",
-        question: "How does GitHub Copilot boost developer productivity?",
+        question: "Which of the following is a benefit of using GitHub Copilot?",
         type: "multiple-choice",
-        options: ["By offloading boilerplate and repetitive coding tasks to free you for logic.", "By managing project dependencies across multiple services.", "By automatically writing system architecture documentation.", "By deploying code directly to cloud environments."],
-        correctAnswer: 0,
-        explanation: "GitHub Copilot boosts productivity by handling boilerplate and repetitive coding tasks, allowing developers to focus on business logic and creative problem-solving.",
+        options: [
+          "Improves cloud storage",
+          "Increases developer productivity",
+          "Reduces server load",
+          "Automates deployment"
+        ],
+        correctAnswer: 1,
+        explanation: "Copilot helps boost developer productivity by generating code quickly and reducing boilerplate work.",
         timeLimit: 30,
         points: 1,
         category: "general"
       }
     ]
   },
-  
+
   2: {
     id: 2,
-    title: "Key Features and Plans",
-    description: "Exploring GitHub Copilot's features and subscription options",
+    title: "Key Features Overview",
+    description: "Exploring GitHub Copilot's main capabilities",
     difficulty: "beginner",
     duration: 1,
     questions: [
       {
         id: "copilot-2-1",
-        question: "Which feature suggests entire functions or code blocks inline?",
+        question: "Which feature allows Copilot to suggest code as you type?",
         type: "multiple-choice",
-        options: ["Inline Code Completion.", "Copilot Chat.", "Pull Request Review.", "CLI Code Runner."],
-        correctAnswer: 0,
-        explanation: "Inline Code Completion is the feature that suggests entire functions or code blocks directly in your editor as you type.",
+        options: [
+          "Pull Request Automation",
+          "Inline Code Completion",
+          "Chat-Based Debugging",
+          "Code Deployment"
+        ],
+        correctAnswer: 1,
+        explanation: "Inline Code Completion is the feature that lets Copilot suggest code within the editor as you type.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-2-2",
-        question: "Which Copilot capability enables automatic PR reviews and Q&A within VS Code?",
+        question: "What is a highlighted benefit of Copilot's multi-language support?",
         type: "multiple-choice",
-        options: ["Copilot Chat.", "Inline Code Suggestions.", "Ghost Text.", "Live Share."],
-        correctAnswer: 0,
-        explanation: "Copilot Chat enables automatic PR reviews and Q&A functionality directly within VS Code and other supported editors.",
+        options: [
+          "It supports only JavaScript.",
+          "It eliminates the need for linters.",
+          "It helps developers across different language stacks.",
+          "It creates new programming languages."
+        ],
+        correctAnswer: 2,
+        explanation: "Multi-language support means Copilot can assist developers across different programming ecosystems.",
         timeLimit: 30,
         points: 1,
         category: "general"
@@ -87,29 +107,39 @@ export const sectionData: Record<number, SectionData> = {
 
   3: {
     id: 3,
-    title: "Working with VS Code",
-    description: "Using GitHub Copilot effectively in Visual Studio Code",
-    difficulty: "intermediate",
+    title: "Plans and Access",
+    description: "Understanding GitHub Copilot's subscription model and availability",
+    difficulty: "beginner",
     duration: 1,
     questions: [
       {
         id: "copilot-3-1",
-        question: "What are \"ghost text\" suggestions in VS Code?",
+        question: "Which of the following is true about GitHub Copilot access?",
         type: "multiple-choice",
-        options: ["Light-gray, inline code completions shown as you type.", "A floating help panel with sample snippets.", "An audio narration of code changes.", "An external browser window with documentation."],
-        correctAnswer: 0,
-        explanation: "Ghost text suggestions are the light-gray, inline code completions that appear as you type in VS Code, showing Copilot's suggestions.",
+        options: [
+          "Copilot is only available for GitHub Enterprise users.",
+          "Copilot access is only through open-source repositories.",
+          "Copilot offers subscription-based access with individual and enterprise plans.",
+          "Copilot is free for everyone."
+        ],
+        correctAnswer: 2,
+        explanation: "GitHub Copilot offers subscription plans for individuals and enterprises.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-3-2",
-        question: "To accept a Copilot suggestion in VS Code, which key do you press by default?",
+        question: "Which group gets free access to GitHub Copilot according to common plans?",
         type: "multiple-choice",
-        options: ["Tab.", "Enter.", "Ctrl + Space.", "Esc."],
-        correctAnswer: 0,
-        explanation: "By default, you press the Tab key to accept a Copilot suggestion in VS Code.",
+        options: [
+          "Startups",
+          "Students and verified open-source contributors",
+          "Remote freelancers",
+          "Large corporations"
+        ],
+        correctAnswer: 1,
+        explanation: "GitHub Copilot offers free access to students and verified open-source contributors.",
         timeLimit: 30,
         points: 1,
         category: "general"
@@ -119,29 +149,39 @@ export const sectionData: Record<number, SectionData> = {
 
   4: {
     id: 4,
-    title: "Framework-Specific Support",
-    description: "How GitHub Copilot works with different frameworks",
+    title: "Responsible AI Principles",
+    description: "Guidelines and ethical considerations for using Copilot",
     difficulty: "intermediate",
     duration: 1,
     questions: [
       {
         id: "copilot-4-1",
-        question: "In a Spring Boot app, typing @GetMapping and a method stub will most likely prompt Copilot to:",
+        question: "Which of the following is a key principle of Responsible AI?",
         type: "multiple-choice",
-        options: ["Suggest a complete controller method implementation.", "Generate a Dockerfile.", "Create a new JPA database schema.", "Write unit tests only."],
-        correctAnswer: 0,
-        explanation: "When you type @GetMapping and a method stub in Spring Boot, Copilot will suggest a complete controller method implementation based on the context.",
+        options: [
+          "Speed and Scalability",
+          "Fairness and Transparency",
+          "Profitability",
+          "UI Design Principles"
+        ],
+        correctAnswer: 1,
+        explanation: "Responsible AI principles include fairness, transparency, and privacy.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-4-2",
-        question: "What does Copilot's \"framework awareness\" enable?",
+        question: "Which AI risk is associated with using GitHub Copilot?",
         type: "multiple-choice",
-        options: ["Generating code using common APIs like Spring's @Autowired.", "Automatically updating library versions.", "Hosting your application in the cloud.", "Encrypting your source code."],
-        correctAnswer: 0,
-        explanation: "Framework awareness enables Copilot to generate code using common APIs and patterns specific to frameworks like Spring's @Autowired annotation.",
+        options: [
+          "Faster deployment pipelines",
+          "Bias and insecure code suggestions",
+          "Increased licensing fees",
+          "Lack of editor support"
+        ],
+        correctAnswer: 1,
+        explanation: "Risks of using generative AI include bias in output and the potential for insecure code patterns.",
         timeLimit: 30,
         points: 1,
         category: "general"
@@ -151,29 +191,39 @@ export const sectionData: Record<number, SectionData> = {
 
   5: {
     id: 5,
-    title: "Responsible Use and Limitations",
-    description: "Understanding responsible AI practices with GitHub Copilot",
-    difficulty: "advanced",
+    title: "Limitations of Copilot",
+    description: "Understanding Copilot's current limitations and review requirements",
+    difficulty: "intermediate",
     duration: 1,
     questions: [
       {
         id: "copilot-5-1",
-        question: "Which practice is not recommended when using Copilot?",
+        question: "Which limitation is mentioned regarding Copilot's training data?",
         type: "multiple-choice",
-        options: ["Blindly trusting all suggestions without review.", "Reviewing and testing AI-generated code.", "Adding comments to note AI-assisted sections.", "Using linters and security scanners on generated code."],
-        correctAnswer: 0,
-        explanation: "Blindly trusting all suggestions without review is not recommended. Always review and test AI-generated code before using it in production.",
+        options: [
+          "It only includes proprietary enterprise code.",
+          "It is constantly updated with live feedback.",
+          "It uses outdated training data and limited context windows.",
+          "It only uses data from mobile apps."
+        ],
+        correctAnswer: 2,
+        explanation: "Copilot is trained on a static dataset, so its responses may include outdated information or miss full context.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-5-2",
-        question: "\"You're the driver\" in Copilot usage means:",
+        question: "Why is validating Copilot's output manually important?",
         type: "multiple-choice",
-        options: ["You remain responsible for design, architecture, and final quality.", "Copilot autonomously makes all decisions.", "You delegate code reviews entirely to Copilot.", "Copilot writes your entire README.md."],
-        correctAnswer: 0,
-        explanation: "'You're the driver' means you remain responsible for design decisions, architecture choices, and ensuring the final quality of your code.",
+        options: [
+          "To save subscription fees",
+          "Because Copilot doesn't support multiple editors",
+          "To ensure code quality, security, and correctness",
+          "To improve internet speed"
+        ],
+        correctAnswer: 2,
+        explanation: "Manual validation ensures that the code generated by Copilot is safe, correct, and aligned with your intent.",
         timeLimit: 30,
         points: 1,
         category: "general"
@@ -183,29 +233,39 @@ export const sectionData: Record<number, SectionData> = {
 
   6: {
     id: 6,
-    title: "Hands-On Examples Overview",
-    description: "Practical examples of using GitHub Copilot",
-    difficulty: "advanced",
+    title: "Validating Copilot Output",
+    description: "Reviewing AI-generated code for safety and correctness",
+    difficulty: "intermediate",
     duration: 1,
     questions: [
       {
         id: "copilot-6-1",
-        question: "In the Java demo (\"CustomerRewards\"), you'd start by writing a comment such as // calculate reward points; Copilot will then:",
+        question: "What is a critical step after Copilot generates code?",
         type: "multiple-choice",
-        options: ["Generate the method stub and implementation for computing points.", "Create a Docker Compose file.", "Publish the code to npm.", "Delete the class."],
-        correctAnswer: 0,
-        explanation: "In the Java demo, writing '// calculate reward points' prompts Copilot to generate the method stub and implementation for computing reward points.",
+        options: [
+          "Immediately pushing to production",
+          "Running performance benchmarks",
+          "Manual review and testing",
+          "Switching to another AI tool"
+        ],
+        correctAnswer: 2,
+        explanation: "The training emphasizes that manually reviewing and testing Copilot's suggestions is essential.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-6-2",
-        question: "The hands-on wrap-up emphasizes that after accepting suggestions you should always:",
+        question: "Which scenario highlights a failure in Copilot validation?",
         type: "multiple-choice",
-        options: ["Review and run tests to verify correctness.", "Immediately merge without checks.", "Delete all comments.", "Uninstall Copilot."],
+        options: [
+          "Using AI-suggested code without review and finding security flaws later",
+          "Writing manual code after Copilot suggestions",
+          "Using comments in code",
+          "Choosing TypeScript over JavaScript"
+        ],
         correctAnswer: 0,
-        explanation: "The hands-on wrap-up emphasizes that you should always review and run tests to verify the correctness of Copilot's suggestions.",
+        explanation: "Blindly accepting AI-generated code without review may introduce security flaws or bugs.",
         timeLimit: 30,
         points: 1,
         category: "general"
@@ -215,29 +275,39 @@ export const sectionData: Record<number, SectionData> = {
 
   7: {
     id: 7,
-    title: "Code Review & Quality",
-    description: "Reviewing AI-generated code",
+    title: "Risks of Over-Reliance",
+    description: "Recognizing the downsides of blindly trusting AI suggestions",
     difficulty: "advanced",
     duration: 1,
     questions: [
       {
         id: "copilot-7-1",
-        question: "What should you always do before accepting Copilot's code suggestions?",
+        question: "What is a risk of over-relying on Copilot?",
         type: "multiple-choice",
-        options: ["Review the code for correctness and security.", "Accept it immediately to save time.", "Run it in production first.", "Share it with the entire team."],
-        correctAnswer: 0,
-        explanation: "You should always review Copilot's code suggestions for correctness, security, and alignment with your project requirements before accepting them.",
+        options: [
+          "Better syntax highlighting",
+          "Increased understanding of logic",
+          "Shipping insecure or buggy code",
+          "Lower subscription pricing"
+        ],
+        correctAnswer: 2,
+        explanation: "Over-reliance can lead to poor quality code being used in production without proper understanding.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-7-2",
-        question: "How can you ensure AI-generated code meets your project's quality standards?",
+        question: "Which practice reduces the risk of over-reliance on Copilot?",
         type: "multiple-choice",
-        options: ["Use linters, run tests, and conduct peer reviews.", "Accept all suggestions without changes.", "Only use Copilot for comments.", "Disable Copilot entirely."],
-        correctAnswer: 0,
-        explanation: "Ensure quality by using linters, running comprehensive tests, and conducting peer reviews on AI-generated code.",
+        options: [
+          "Copy-pasting without reading",
+          "Using Copilot for every task",
+          "Always reviewing and testing AI output",
+          "Turning off syntax checkers"
+        ],
+        correctAnswer: 2,
+        explanation: "Reviewing and testing Copilot's output ensures developers stay responsible and critical of what they use.",
         timeLimit: 30,
         points: 1,
         category: "general"
@@ -247,29 +317,39 @@ export const sectionData: Record<number, SectionData> = {
 
   8: {
     id: 8,
-    title: "Security Considerations",
-    description: "Safe usage and data privacy",
+    title: "Hands-On with Copilot",
+    description: "Practical application and live examples",
     difficulty: "advanced",
     duration: 1,
     questions: [
       {
         id: "copilot-8-1",
-        question: "What security risk should you be aware of when using Copilot?",
+        question: "What is one way Copilot is demonstrated in hands-on exercises?",
         type: "multiple-choice",
-        options: ["It might suggest code with security vulnerabilities.", "It automatically encrypts all your data.", "It never suggests insecure code.", "It only works with public repositories."],
-        correctAnswer: 0,
-        explanation: "Copilot might suggest code with security vulnerabilities, so always review suggestions for potential security issues.",
+        options: [
+          "By writing blog articles",
+          "By completing function bodies from comments",
+          "By running cloud backups",
+          "By opening terminal sessions"
+        ],
+        correctAnswer: 1,
+        explanation: "The demo showcases Copilot generating function implementations from descriptive comments.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-8-2",
-        question: "How does GitHub Copilot handle your private code data?",
+        question: "What is emphasized after using Copilot in hands-on scenarios?",
         type: "multiple-choice",
-        options: ["Private code is not used to train the model.", "All code is shared publicly.", "Private code is used to improve suggestions.", "Data is sold to third parties."],
-        correctAnswer: 0,
-        explanation: "GitHub Copilot does not use private repository code to train its models, ensuring your proprietary code remains private.",
+        options: [
+          "Disabling the plugin",
+          "Deleting code history",
+          "Reviewing and running tests on the generated code",
+          "Ignoring output warnings"
+        ],
+        correctAnswer: 2,
+        explanation: "The wrap-up clearly advises reviewing and testing all Copilot-generated code for accuracy.",
         timeLimit: 30,
         points: 1,
         category: "general"
@@ -279,29 +359,39 @@ export const sectionData: Record<number, SectionData> = {
 
   9: {
     id: 9,
-    title: "Troubleshooting",
-    description: "Common issues and solutions",
-    difficulty: "intermediate",
+    title: "Ethical Considerations",
+    description: "Ethical use of AI tools in software development",
+    difficulty: "advanced",
     duration: 1,
     questions: [
       {
         id: "copilot-9-1",
-        question: "What should you do if Copilot suggestions aren't appearing?",
+        question: "Which ethical issue is associated with generative AI tools like Copilot?",
         type: "multiple-choice",
-        options: ["Check your internet connection and Copilot subscription status.", "Restart your computer immediately.", "Uninstall and reinstall VS Code.", "Switch to a different programming language."],
-        correctAnswer: 0,
-        explanation: "If suggestions aren't appearing, first check your internet connection and verify your Copilot subscription is active.",
+        options: [
+          "Server lag",
+          "Bias in training data",
+          "Lack of color themes",
+          "Low-resolution UI"
+        ],
+        correctAnswer: 1,
+        explanation: "Bias in training data is a known ethical concern when using generative AI models like Copilot.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-9-2",
-        question: "How can you improve the quality of Copilot's suggestions?",
+        question: "How can developers mitigate ethical risks when using Copilot?",
         type: "multiple-choice",
-        options: ["Write clear, descriptive comments and function names.", "Type as fast as possible.", "Use only single-letter variable names.", "Work without any comments."],
-        correctAnswer: 0,
-        explanation: "Writing clear, descriptive comments and using meaningful function names helps Copilot understand context and provide better suggestions.",
+        options: [
+          "Ignore AI completely",
+          "Avoid testing code",
+          "Be transparent, review output, and follow privacy norms",
+          "Turn off autocomplete features"
+        ],
+        correctAnswer: 2,
+        explanation: "Responsible usage involves transparency, privacy, and active review of AI-generated suggestions.",
         timeLimit: 30,
         points: 1,
         category: "general"
@@ -311,29 +401,39 @@ export const sectionData: Record<number, SectionData> = {
 
   10: {
     id: 10,
-    title: "Advanced Techniques",
-    description: "Expert tips and tricks",
-    difficulty: "advanced",
+    title: "Looking Ahead",
+    description: "What to expect in future sessions of Copilot training",
+    difficulty: "beginner",
     duration: 1,
     questions: [
       {
         id: "copilot-10-1",
-        question: "What's an advanced technique for getting better Copilot suggestions?",
+        question: "What does the final slide suggest about the training?",
         type: "multiple-choice",
-        options: ["Provide detailed docstrings and type hints.", "Use very short variable names.", "Avoid writing any comments.", "Only work with single-line functions."],
-        correctAnswer: 0,
-        explanation: "Providing detailed docstrings and type hints gives Copilot more context, resulting in more accurate and helpful suggestions.",
+        options: [
+          "It has ended completely",
+          "More hands-on and detailed examples are coming",
+          "Copilot is being retired",
+          "No further learning is necessary"
+        ],
+        correctAnswer: 1,
+        explanation: "The slide 'To Be Continued…' implies more detailed hands-on examples and training in future sessions.",
         timeLimit: 30,
         points: 1,
         category: "general"
       },
       {
         id: "copilot-10-2",
-        question: "How can you use Copilot Chat for complex problem-solving?",
+        question: "What is the most likely next focus based on the training flow?",
         type: "multiple-choice",
-        options: ["Ask it to explain algorithms and suggest optimizations.", "Only use it for simple syntax questions.", "Avoid using it for debugging.", "Use it only for documentation."],
-        correctAnswer: 0,
-        explanation: "Copilot Chat can help explain complex algorithms, suggest optimizations, assist with debugging, and provide architectural guidance.",
+        options: [
+          "Copilot's role in GitHub billing",
+          "In-depth demos and real-world usage",
+          "AI in image editing",
+          "Machine learning theory"
+        ],
+        correctAnswer: 1,
+        explanation: "The next step hinted is more practical application and real-world examples of Copilot in action.",
         timeLimit: 30,
         points: 1,
         category: "general"
